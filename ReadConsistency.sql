@@ -31,7 +31,7 @@ ROLLBACK;
 -- It keeps a partial copy of the database in the undo segments.
 -- The read-consistent image is constructed from the committed data in the table and the old data that is being changed and is not yet committed from the undo segment.
 
--- FOR UPDATE clause
+------------------------------------------ FOR UPDATE clause-----------------------------
 
 -- Locks the rows in the EMPLOYEES table where job_id is SA_REP.
 -- Lock is released only when you issue a ROLLBACK or a COMMIT.
