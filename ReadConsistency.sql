@@ -25,6 +25,8 @@ WHERE
 
 ROLLBACK;
 
+/
+
 -- Read consistency is an automatic implementation.
 -- It keeps a partial copy of the database in the undo segments.
 -- The read-consistent image is constructed from the committed data in the table and the old data that is being changed and is not yet committed from the undo segment.
