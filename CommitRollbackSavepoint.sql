@@ -14,3 +14,46 @@
     -- Ensure data consistency
     -- Preview data changes before making changes permanent
     -- Group logically-related operations
+
+-- have a look at csr.png
+
+-- time vs statements
+-- commit  --> a transaction starts
+-- delete --> a dml statement
+-- savepoint a -> a savepoint is created with name a
+-- insert -- > a dml statement
+-- update --> a dml statement
+-- savepoint b --> a save point is created with name b
+-- insert --> a dml statement
+-- .....
+
+-- so for above queries we can use the commands:
+-- rollback to savepoint a ( to rollback to a)
+-- rollback to savepoint b ( to rollback to b)
+-- rollback (this will take us to the start of the txn , the first save point was automatically created)
+
+
+COMMIT;
+-- here a save point is implicitly created
+UPDATE EMPLOYEES
+SET
+    EMPLOYEE_ID = 100
+WHERE
+    EMPLOYEE_ID =1991;
+-- update is a dml statement
+-- we can create a savepoint if we cant
+SAVEPOINT A;
+
+DELETE FROM EMPLOYEES
+WHERE
+    EMPLOYEE_ID=1991;
+-- we can create a savepoint if we want
+SAVEPOINT B;
+ROLLBACK;
+-- we can rollback to any savepoint by specifying its name
+commit;
+-- this marks the end of transaction
+
+-- so we can create a marker in the current transaction by using the SAVEPOINT statement,
+-- which divides the transaction into smaller sections.
+-- if we create a second savepoint with the same name as an earlier savepoint, the earlier savepoint is deleted.
