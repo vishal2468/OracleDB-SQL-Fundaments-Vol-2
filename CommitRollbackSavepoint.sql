@@ -57,3 +57,12 @@ commit;
 -- so we can create a marker in the current transaction by using the SAVEPOINT statement,
 -- which divides the transaction into smaller sections.
 -- if we create a second savepoint with the same name as an earlier savepoint, the earlier savepoint is deleted.
+
+-- Implicit transaction processing
+-- auto commit occurs when
+    -- a DDL statement is issued (CREATE , ALTER , DROP etc)
+    -- a DCL statement is issued ( grant , revoke)
+    -- Normal exit from sql developer or SQL plus without issuing commit or rollback
+-- auto rollback occurs when
+    -- system faliure
+    -- abnormal termination of sql developer or SQL plus
